@@ -1,0 +1,73 @@
+/* Reset default margins */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+/* Main container (Full screen split) */
+.home-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Left Section – 30% */
+.home-left {
+  width: 30%;
+  background: linear-gradient(to bottom, #680991, #ed3fa4, #c43c3c);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* Content inside left panel */
+.home-content {
+  max-width: 350px;
+  text-align: left;
+}
+
+/* Text styling */
+.home-title {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.home-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #f0e9ff;
+}
+
+/* Right Section – 70% */
+.home-right {
+  width: 70%;
+  background-image: url("https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1920&q=80");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Links */
+.home-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+}
+
+.home-link:hover {
+  color: #ffd700;
+}
