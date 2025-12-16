@@ -5,33 +5,42 @@ import { useNavigate } from 'react-router-dom'; // useNavigate instead of useHis
 const Login = () => {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     const [showPassword, setShowPassword] = useState(false);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
+
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch("http://localhost:5000/api/auth/login", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: credentials.email,
-                password: credentials.password
-            })
-        });
 
-        const json = await response.json();
-        console.log(json, "json");
-    
-        //  Redirect after successful login
-        if (json.success) {
-            localStorage.setItem("token", json.token);
-            navigate("/"); // or any route you want
-        } else {
+        try {
+            const response = await fetch(
+                `${API_URL}/api/auth/login`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: credentials.email,
+                        password: credentials.password,
+                    }),
+                }
+            );
 
-            alert("Invalid credentials");
+            const json = await response.json();
+            console.log(json, "json");
+
+            if (json.success) {
+                localStorage.setItem("token", json.token);
+                navigate("/");
+            } else {
+                alert(json.error || "Invalid credentials");
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+            alert("Server error. Please try again later.");
         }
-    };
+    }
 
     const onChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value });

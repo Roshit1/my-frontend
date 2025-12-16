@@ -31,9 +31,11 @@ const Signup = () => {
       return;
     }
 
+    const API_URL = process.env.REACT_APP_API_URL;
+
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/createuser",
+        `${API_URL}/api/auth/createuser`,
         {
           name: credentials.name,
           email: credentials.email,
