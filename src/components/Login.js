@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import '../css/loginAndsigin.css'
 import { useNavigate } from 'react-router-dom'; // useNavigate instead of useHistory
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Login = () => {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
-    const API_URL = process.env.REACT_APP_API_URL;
 
     const handleSubmit = async (e) => {
         e.preventDefault();

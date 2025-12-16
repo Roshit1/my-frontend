@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../css/loginAndsigin.css'
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Signup = () => {
   const [credentials, setCredentials] = useState({
     name: '',
@@ -31,7 +33,7 @@ const Signup = () => {
       return;
     }
 
-    const API_URL = process.env.REACT_APP_API_URL;
+    
 
     try {
       const response = await axios.post(
